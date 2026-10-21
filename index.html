@@ -208,6 +208,10 @@ footer{padding-block:64px 40px}
 .foot .big{font-family:var(--display);font-weight:800;font-size:clamp(3rem,11vw,9rem);letter-spacing:-.04em;line-height:.9;display:flex;align-items:center;gap:.18em}
 .foot .big .mark{width:.82em;height:.82em;color:var(--accent);flex:none}
 .foot .row{display:flex;flex-wrap:wrap;gap:16px 32px;justify-content:space-between;color:var(--muted);font-size:.9rem;border-top:1px solid var(--line);padding-top:22px}
+.foot-links{display:flex;flex-wrap:wrap;gap:10px 22px}
+.foot-links a{display:inline-flex;align-items:center;gap:8px;color:var(--ink);text-decoration:none}
+.foot-links a:hover{color:var(--accent)}
+.foot-links svg{width:16px;height:16px}
 .foot .row em{font-family:var(--display);font-weight:700;font-size:1.05rem}
 
 @media (prefers-reduced-motion:reduce){
@@ -493,7 +497,10 @@ footer{padding-block:64px 40px}
     <div class="row">
       <em>Building for Future</em>
       <span>desci.tr</span>
-      <span data-tr>İletişim bilgileri eklenecek</span><span data-en>Contact details coming soon</span>
+      <span class="foot-links">
+        <a href="https://x.com/DeSciTurkiye" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M17.8 3h3.1l-6.8 7.8L22 21h-6.2l-4.9-6.4L5.3 21H2.2l7.3-8.3L2 3h6.4l4.4 5.8L17.8 3zm-1.1 16.2h1.7L7.4 4.7H5.6l11.1 14.5z"/></svg>@DeSciTurkiye</a>
+        <a href="https://www.linkedin.com/in/meryemneslisahsuicmez/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.5h4V21H3V9.5zm7 0h3.8v1.6h.1c.5-1 1.8-1.9 3.7-1.9 4 0 4.7 2.6 4.7 6V21h-4v-5.2c0-1.2 0-2.9-1.8-2.9s-2.1 1.4-2.1 2.8V21h-4V9.5z"/></svg>LinkedIn</a>
+      </span>
       <span>© 2026 DeSci Türkiye</span>
     </div>
   </div>
