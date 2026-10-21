@@ -1,6 +1,6 @@
 # desci.tr
 
-DeSci Türkiye topluluğunun web sitesi. Yayın adresi: https://desci.tr
+DeSci Türkiye topluluğunun web sitesi. Yayın adresi: https://www.desci.tr (desci.tr buraya yönlenir)
 
 ## Yapı
 
