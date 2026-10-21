@@ -1,0 +1,556 @@
+<!doctype html>
+<html lang="tr" data-lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="DeSci Türkiye: açık, şeffaf ve iş birliğine dayalı bilim topluluğu.">
+<meta property="og:title" content="DeSci Türkiye">
+<meta property="og:description" content="Açık, şeffaf ve iş birliğine dayalı bilim topluluğu. Building for Future.">
+<meta property="og:image" content="https://desci.tr/img/odtu-evrim.jpg">
+<meta property="og:url" content="https://desci.tr/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+<title>DeSci Türkiye</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a dark stage for open science — photo-led bands, a live molecular network in the hero, ticker of cities, DeSci orange accents */
+:root{
+  --bg:#0F0E0D; --bg-2:#181614; --bg-3:#221F1C; --ink:#F4EFE9; --muted:#A69D94; --line:#2E2A26;
+  --accent:#FF8002; --accent-soft:rgba(255,128,2,.14); --on-accent:#140C04;
+  --display:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;
+  --body:"IBM Plex Sans","Helvetica Neue",Arial,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  color-scheme:dark;
+}
+html[data-lang="en"] [data-tr], html[data-lang="tr"] [data-en]{display:none!important}
+*{box-sizing:border-box}
+html{background:var(--bg)}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:1rem;line-height:1.6;overflow-x:hidden}
+.wrap{max-width:1200px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+a{color:var(--accent)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+h1,h2,h3{font-family:var(--display);line-height:1.02;text-wrap:balance;margin:0;font-weight:800;letter-spacing:-.025em}
+h2{font-size:clamp(2.2rem,5.5vw,4.2rem)}
+h3{font-size:1.3rem;font-weight:700;letter-spacing:-.01em;line-height:1.15}
+em{font-style:normal;color:var(--accent)}
+p{margin:0;max-width:60ch}
+img{display:block;max-width:100%}
+.label{font-family:var(--mono);font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.label.dot::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--accent);margin-right:10px;vertical-align:1px}
+
+/* header */
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:20;background:var(--bg)}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:15;background:rgba(15,14,13,.78);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.bar{display:flex;align-items:center;gap:18px;padding-block:12px;flex-wrap:wrap}
+.logo{font-family:var(--display);font-weight:800;font-size:1.15rem;text-decoration:none;color:var(--ink);display:flex;align-items:center;gap:9px;letter-spacing:-.01em}
+.logo .mark{width:30px;height:30px;color:var(--accent);flex:none}
+nav{display:flex;gap:22px;margin-left:auto}
+nav a{color:var(--ink);opacity:.82;text-decoration:none;font-size:.92rem;white-space:nowrap}
+nav a:hover{opacity:1;color:var(--accent)}
+.right{display:flex;gap:10px;align-items:center}
+.lang{display:flex;border:1px solid var(--line);border-radius:999px;overflow:hidden}
+.lang button{font-family:var(--mono);font-size:.74rem;padding:6px 10px;border:0;background:transparent;color:var(--muted);cursor:pointer}
+.lang button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.pill{display:inline-flex;align-items:center;gap:8px;padding:9px 16px;border-radius:999px;background:var(--accent);color:var(--on-accent);font-weight:600;text-decoration:none;font-size:.9rem;border:0;font-family:var(--body);cursor:pointer}
+.pill.ghost{background:transparent;color:var(--ink);border:1px solid rgba(244,239,233,.35)}
+.pill.ghost:hover{border-color:var(--ink)}
+.pill:hover{filter:brightness(1.07)}
+@media (max-width:900px){nav{order:3;width:100%;margin-left:0;overflow-x:auto;gap:18px;padding-bottom:2px}.right{margin-left:auto}}
+@media (max-width:420px){.right .pill{display:none}}
+
+/* hero */
+.hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line);isolation:isolate}
+.hero-media{position:absolute;inset:0;z-index:-3;width:100%;height:100%;object-fit:cover;object-position:70% 30%}
+.hero::before{content:"";position:absolute;inset:0;z-index:-2;background:linear-gradient(90deg,rgba(15,14,13,.97) 0%,rgba(15,14,13,.88) 38%,rgba(15,14,13,.35) 75%,rgba(15,14,13,.55) 100%),linear-gradient(0deg,rgba(15,14,13,1) 0%,rgba(15,14,13,0) 35%)}
+@media (max-width:760px){.hero::before{background:linear-gradient(0deg,rgba(15,14,13,1) 10%,rgba(15,14,13,.82) 60%,rgba(15,14,13,.6) 100%)}}
+#net{position:absolute;inset:0;z-index:-1;width:100%;height:100%;pointer-events:none}
+.hero .wrap{padding-block:clamp(72px,12vw,150px) 72px}
+.hero h1{font-size:clamp(3rem,9.2vw,7.4rem);max-width:11ch;margin-top:22px}
+.hero .lede{font-size:clamp(1.05rem,1.6vw,1.25rem);color:#D9D1C8;margin-top:26px;max-width:46ch}
+.hero .cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:34px}
+.hero .cta .pill{padding:13px 22px;font-size:1rem}
+.hero .caption{margin-top:56px;font-family:var(--mono);font-size:.72rem;color:var(--muted);letter-spacing:.08em}
+
+/* ticker */
+.ticker{border-bottom:1px solid var(--line);background:var(--accent);color:var(--on-accent);overflow:hidden;white-space:nowrap}
+.ticker .track{display:inline-flex;gap:0;padding-block:14px;animation:slide 38s linear infinite}
+.ticker span{font-family:var(--display);font-weight:700;font-size:1.15rem;letter-spacing:-.01em;padding-inline:22px;display:inline-flex;align-items:center;gap:22px}
+.ticker span::after{content:"";width:8px;height:8px;border-radius:50%;background:var(--on-accent);margin-left:22px;display:inline-block}
+.ticker:hover .track{animation-play-state:paused}
+@keyframes slide{to{transform:translateX(-50%)}}
+
+section{padding-block:clamp(72px,10vw,128px);border-bottom:1px solid var(--line)}
+.head{display:grid;gap:18px;margin-bottom:48px}
+.head p{color:var(--muted);font-size:1.1rem}
+
+/* manifesto */
+.problems{display:grid;gap:0;margin-top:8px;border-top:1px solid var(--line)}
+.problems div{display:grid;grid-template-columns:120px 1fr 1.1fr;gap:24px;padding-block:28px;border-bottom:1px solid var(--line);align-items:baseline}
+.problems .k{font-family:var(--mono);font-size:.78rem;color:var(--accent)}
+.problems h3{font-size:clamp(1.5rem,3vw,2.2rem);font-weight:800;letter-spacing:-.02em}
+.problems p{color:var(--muted)}
+@media (max-width:760px){.problems div{grid-template-columns:1fr;gap:8px}}
+
+.eras{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:72px}
+@media (max-width:860px){.eras{grid-template-columns:1fr}}
+.era{border:1px solid var(--line);border-radius:18px;padding:28px;display:grid;gap:14px;background:var(--bg-2);align-content:start;min-width:0}
+.era .v{font-family:var(--display);font-weight:800;font-size:3.6rem;letter-spacing:-.03em;line-height:1;color:var(--muted)}
+.era p{color:var(--muted)}
+.era.now{background:var(--accent-soft);border-color:rgba(255,128,2,.55)}
+.era.now .v{color:var(--accent)}
+.era ul{margin:0;padding:0;display:grid;gap:8px}
+.era li{list-style:none;padding-left:18px;position:relative;color:var(--ink)}
+.era li::before{content:"";position:absolute;left:0;top:.62em;width:7px;height:7px;border-radius:50%;background:var(--accent)}
+
+/* numbers */
+.numbers{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+@media (max-width:760px){.numbers{grid-template-columns:repeat(2,1fr)}}
+.numbers div{padding:30px 22px;border-right:1px solid var(--line);display:grid;gap:6px}
+.numbers div:last-child{border-right:0}
+@media (max-width:760px){.numbers div:nth-child(2){border-right:0}.numbers div:nth-child(-n+2){border-bottom:1px solid var(--line)}}
+.numbers b{font-family:var(--display);font-size:clamp(2.6rem,6vw,4.4rem);font-weight:800;letter-spacing:-.03em;line-height:1;font-variant-numeric:tabular-nums}
+.numbers b i{font-style:normal;color:var(--accent)}
+.numbers span{color:var(--muted);font-size:.92rem}
+
+/* events */
+.events{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+@media (max-width:760px){.events{grid-template-columns:1fr}}
+.ev{position:relative;border-radius:18px;overflow:hidden;background:var(--bg-2);border:1px solid var(--line);display:grid;grid-template-rows:auto 1fr;min-width:0}
+.ev .pic{aspect-ratio:16/10;overflow:hidden;background:var(--bg-3)}
+.ev .pic img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+.ev .pic img.contain{object-fit:contain}
+.ev:hover .pic img{transform:scale(1.035)}
+.ev .body{padding:24px;display:grid;gap:10px;align-content:start}
+.ev p{color:var(--muted)}
+.ev .top{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.chip{font-family:var(--mono);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;padding:4px 9px;border-radius:999px;border:1px solid var(--line);color:var(--muted)}
+.chip.live{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
+.meta{display:flex;flex-wrap:wrap;gap:6px 14px;font-family:var(--mono);font-size:.76rem;color:var(--muted)}
+.ev.big{grid-column:1/-1;grid-template-columns:1.2fr 1fr;grid-template-rows:none}
+.ev.big .pic{aspect-ratio:auto;min-height:340px}
+.ev.big h3{font-size:clamp(1.8rem,3.4vw,2.8rem);font-weight:800;letter-spacing:-.02em}
+.ev.big .body{padding:36px;align-content:center;gap:14px}
+@media (max-width:760px){.ev.big{grid-template-columns:1fr}.ev.big .pic{min-height:0;aspect-ratio:16/10}.ev.big .body{padding:24px}}
+
+/* photo strip */
+.strip{overflow:hidden;margin-top:8px;mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+.strip .track{display:flex;gap:16px;width:max-content;animation:slide 70s linear infinite}
+.strip:hover .track{animation-play-state:paused}
+.strip figure{margin:0;width:clamp(260px,32vw,420px);flex:none;display:grid;gap:10px}
+.strip img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:14px}
+.strip figcaption{display:flex;justify-content:space-between;gap:10px;font-size:.92rem}
+.strip figcaption span{font-family:var(--mono);font-size:.74rem;color:var(--muted)}
+.cities{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px}
+.cities span{border:1px solid var(--line);border-radius:999px;padding:7px 14px;font-size:.92rem}
+
+/* founder */
+.founder{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(28px,5vw,72px);align-items:center}
+@media (max-width:860px){.founder{grid-template-columns:1fr}}
+.founder .photo{position:relative}
+.founder .photo img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:22px}
+.founder .photo .tag{position:absolute;left:16px;bottom:16px;background:rgba(15,14,13,.82);backdrop-filter:blur(6px);border-radius:999px;padding:7px 13px;font-family:var(--mono);font-size:.72rem}
+.founder .txt{display:grid;gap:18px;min-width:0}
+.founder .txt p{color:#D9D1C8}
+.creds{display:grid;gap:0;padding:0;margin:6px 0 0;border-top:1px solid var(--line)}
+.creds li{list-style:none;padding-block:12px;border-bottom:1px solid var(--line);display:flex;gap:14px}
+.creds li::before{content:"↗";color:var(--accent);font-family:var(--mono)}
+.social{display:flex;flex-wrap:wrap;gap:10px}
+.social a{display:inline-flex;align-items:center;gap:9px;padding:10px 16px;border:1px solid var(--line);border-radius:999px;text-decoration:none;color:var(--ink);font-weight:600;font-size:.92rem;background:var(--bg-2)}
+.social a:hover{border-color:var(--accent)}
+.social svg{width:18px;height:18px;color:var(--accent)}
+.social small{font-family:var(--mono);font-weight:400;font-size:.76rem;color:var(--muted)}
+.partners{display:flex;flex-wrap:wrap;gap:8px 22px;font-family:var(--display);font-weight:700;font-size:1.05rem;color:var(--muted)}
+
+.partner-band{display:grid;grid-template-columns:auto 1fr;gap:16px 40px;align-items:center;padding-block:36px;border-bottom:1px solid var(--line)}
+@media (max-width:760px){.partner-band{grid-template-columns:1fr}}
+.partner-band .partners{font-size:clamp(1.15rem,2.2vw,1.6rem);color:var(--ink);gap:10px 36px}
+/* series */
+.series{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px;align-items:end}
+@media (max-width:860px){.series{grid-template-columns:1fr}}
+.themes{display:flex;flex-wrap:wrap;gap:10px}
+.themes span{font-family:var(--display);font-weight:600;font-size:1.08rem;border:1px solid var(--line);padding:10px 18px;border-radius:999px;background:var(--bg-2)}
+.themes span:nth-child(1){border-color:var(--accent);color:var(--accent)}
+
+/* join */
+.join{position:relative;isolation:isolate;overflow:hidden}
+.join .bg{position:absolute;inset:0;z-index:-2;width:100%;height:100%;object-fit:cover}
+.join::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(15,14,13,.94) 0%,rgba(15,14,13,.8) 50%,rgba(15,14,13,.65) 100%)}
+.join-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:48px;align-items:start}
+@media (max-width:860px){.join-grid{grid-template-columns:1fr}}
+.join h2{font-size:clamp(2.6rem,7vw,5.6rem)}
+.join .lede{color:#D9D1C8;font-size:1.1rem;margin-top:20px}
+.roles{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px;padding:0}
+.roles li{list-style:none;font-size:.88rem;padding:7px 13px;border-radius:999px;background:rgba(244,239,233,.08);border:1px solid rgba(244,239,233,.14)}
+form{background:rgba(24,22,20,.9);backdrop-filter:blur(10px);border:1px solid var(--line);padding:26px;display:grid;gap:14px;border-radius:20px;min-width:0}
+label{display:grid;gap:6px;font-size:.88rem;font-weight:500}
+input,textarea{font:inherit;padding:11px 13px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);width:100%}
+input:focus,textarea:focus{border-color:var(--accent);outline:none}
+textarea{min-height:88px;resize:vertical}
+.radios{display:flex;gap:8px;flex-wrap:wrap}
+.radios label{display:inline-flex;flex-direction:row;align-items:center;gap:8px;padding:8px 14px;border:1px solid var(--line);border-radius:999px;cursor:pointer;font-weight:400}
+.radios input{width:auto;accent-color:var(--accent)}
+.radios label:has(input:checked){border-color:var(--accent);background:var(--accent-soft)}
+form .pill{justify-content:center;padding:13px;font-size:1rem}
+.note{font-size:.8rem;color:var(--muted)}
+.ok{color:var(--accent);font-weight:600}
+
+/* blog */
+.posts{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media (max-width:860px){.posts{grid-template-columns:1fr}}
+.post{border:1px solid var(--line);border-radius:18px;padding:26px;display:grid;gap:12px;align-content:start;background:var(--bg-2)}
+.post p{color:var(--muted);font-size:.95rem}
+
+footer{padding-block:64px 40px}
+.foot{display:grid;gap:40px}
+.foot .big{font-family:var(--display);font-weight:800;font-size:clamp(3rem,11vw,9rem);letter-spacing:-.04em;line-height:.9;display:flex;align-items:center;gap:.18em}
+.foot .big .mark{width:.82em;height:.82em;color:var(--accent);flex:none}
+.foot .row{display:flex;flex-wrap:wrap;gap:16px 32px;justify-content:space-between;color:var(--muted);font-size:.9rem;border-top:1px solid var(--line);padding-top:22px}
+.foot .row em{font-family:var(--display);font-weight:700;font-size:1.05rem}
+
+@media (prefers-reduced-motion:reduce){
+  .ticker .track,.strip .track{animation:none}
+  .strip{overflow-x:auto}
+  .ev .pic img{transition:none}
+}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+</style>
+<style>body{margin:0}</style>
+</head>
+<body>
+
+
+<header>
+  <div class="wrap bar">
+    <a class="logo" href="#top"><svg class="mark" viewBox="40 40 290 300" aria-hidden="true"><path fill-rule="evenodd" fill="currentColor" d="M 184.125 44.925781 C 177.339844 46.136719 170.394531 49.679688 165.207031 54.578125 C 158.707031 60.710938 156.027344 65.570312 153.53125 75.730469 C 151.574219 83.695312 150.667969 86.382812 148.800781 89.71875 C 146.425781 93.96875 143.996094 96.328125 140.011719 98.257812 C 136.871094 99.777344 136.101562 99.976562 132.730469 100.144531 C 127.964844 100.378906 122.851562 99.371094 116.566406 96.953125 C 103.40625 91.890625 99.011719 90.929688 90.75 91.316406 C 74.628906 92.070312 61.277344 100.578125 54.363281 114.5 C 53.234375 116.773438 51.816406 120.492188 51.210938 122.761719 C 50.234375 126.421875 50.109375 127.671875 50.089844 133.710938 C 50.066406 142.042969 50.851562 145.636719 54.199219 152.558594 C 56.902344 158.136719 59.746094 161.796875 66.046875 167.789062 C 71.457031 172.9375 73.492188 175.578125 74.703125 179.023438 C 76.425781 183.929688 75.152344 189.96875 71.546875 193.957031 C 70.703125 194.890625 67.601562 197.367188 64.652344 199.457031 C 56.933594 204.929688 53.464844 209.003906 50.660156 215.890625 C 48.921875 220.160156 48.152344 224.488281 48.164062 229.949219 C 48.171875 236.984375 49.210938 241.621094 51.953125 246.894531 C 56.183594 255.035156 62.867188 260.496094 71.96875 263.253906 C 75.222656 264.238281 76.398438 264.378906 81.660156 264.414062 C 88.445312 264.457031 90.105469 264.144531 99.144531 261.136719 C 102.546875 260.003906 105.972656 259.144531 107.613281 259.007812 C 115.945312 258.328125 121.921875 262.152344 126.25 270.929688 C 128.78125 276.066406 129.753906 279.738281 130.835938 288.265625 C 131.289062 291.824219 132.011719 296.097656 132.441406 297.769531 C 136.808594 314.65625 150.765625 328.035156 168.410156 332.242188 C 175.144531 333.851562 185.484375 333.304688 192.269531 330.988281 C 204.964844 326.652344 216.015625 317.125 221.496094 305.796875 C 223.625 301.386719 224.03125 300.199219 226.015625 292.589844 C 226.835938 289.433594 227.996094 285.824219 228.59375 284.558594 C 230.074219 281.433594 232.582031 279 235.042969 278.3125 C 238.820312 277.253906 241.179688 277.832031 251.796875 282.417969 C 269.164062 289.917969 288.996094 285.511719 300.59375 271.574219 C 303.589844 267.972656 307.265625 260.8125 308.492188 256.191406 C 309.175781 253.613281 309.371094 251.65625 309.375 247.308594 C 309.386719 240.632812 308.585938 237.070312 305.796875 231.40625 C 303.351562 226.441406 300.589844 222.890625 295.964844 218.773438 C 289.300781 212.839844 286.539062 209.40625 284.464844 204.46875 C 283.304688 201.703125 283.085938 200.632812 282.921875 196.863281 C 282.667969 190.964844 283.488281 188.4375 287.410156 183.058594 C 289.347656 180.402344 290.738281 179.195312 296.960938 174.78125 C 313.308594 163.183594 319.417969 154.824219 321.464844 141.25 C 325.117188 117.011719 310.683594 95.769531 287.839844 91.769531 C 277.644531 89.984375 269.296875 91.636719 256.394531 98.003906 C 245.816406 103.21875 242.75 104.414062 239.242188 104.679688 C 236.652344 104.875 235.96875 104.769531 234.003906 103.871094 C 231.683594 102.808594 230.46875 101.492188 229.238281 98.726562 C 228.65625 97.410156 228.53125 95.554688 228.476562 87.445312 C 228.382812 73.9375 227.195312 68.886719 222.460938 61.808594 C 217.214844 53.964844 208.894531 48.019531 199.886719 45.675781 C 196.183594 44.714844 187.59375 44.304688 184.125 44.925781 M 155.71875 114.519531 C 150.664062 115.878906 145.550781 119.410156 142.160156 123.882812 C 139.171875 127.828125 137.234375 132.355469 135.589844 139.226562 C 133.820312 146.625 132.234375 150.535156 129.132812 155.167969 C 124.296875 162.386719 119.039062 167.40625 110.578125 172.871094 C 103.269531 177.59375 102.863281 177.886719 100.652344 180.0625 C 97.992188 182.683594 96.886719 184.890625 96.628906 188.109375 C 96.308594 192.074219 97.542969 194.203125 103.203125 199.464844 C 112.769531 208.363281 115.949219 214.402344 118.566406 228.660156 C 119.765625 235.175781 123.164062 240.484375 128.363281 243.953125 C 136.183594 249.175781 145.722656 249.585938 156.429688 245.160156 C 168.273438 240.265625 174.074219 239.074219 182.066406 239.894531 C 191.765625 240.890625 200.796875 245.25 209.71875 253.246094 C 215.777344 258.675781 219.988281 260.011719 224.339844 257.878906 C 229.285156 255.464844 231.15625 252.050781 233.699219 240.824219 C 235.230469 234.078125 239.125 227.441406 243.878906 223.488281 C 245.203125 222.382812 248.117188 220.207031 250.347656 218.652344 C 252.578125 217.09375 255.398438 214.828125 256.609375 213.617188 C 265.414062 204.8125 267.949219 192.898438 263.21875 182.5625 C 261.304688 178.378906 259.085938 175.578125 252.496094 169.027344 C 245.164062 161.738281 242.742188 158.816406 240.308594 154.292969 C 237.089844 148.3125 236.0625 144.03125 234.921875 131.863281 C 234.429688 126.636719 233.03125 123.027344 230.453125 120.351562 C 227.859375 117.660156 226.171875 117.003906 221.902344 117.023438 C 218.726562 117.039062 217.675781 117.238281 214.675781 118.390625 C 203.488281 122.683594 201.980469 123.089844 196.484375 123.292969 C 189.457031 123.554688 186.304688 122.75 178.269531 118.648438 C 170.71875 114.796875 167.554688 113.871094 162.015625 113.910156 C 159.738281 113.925781 156.90625 114.199219 155.71875 114.519531 "/></svg>DeSci Türkiye</a>
+    <nav aria-label="Menü">
+      <a href="#manifesto"><span data-tr>Neden DeSci</span><span data-en>Why DeSci</span></a>
+      <a href="#events"><span data-tr>Etkinlikler</span><span data-en>Events</span></a>
+      <a href="#global"><span data-tr>Global</span><span data-en>Global</span></a>
+      <a href="#series"><span data-tr>Eğitim</span><span data-en>Training</span></a>
+      <a href="#blog">Blog</a>
+    </nav>
+    <div class="right">
+      <div class="lang" role="group" aria-label="Dil / Language">
+        <button id="btn-tr" type="button" data-set="tr" aria-pressed="true">TR</button>
+        <button id="btn-en" type="button" data-set="en" aria-pressed="false">EN</button>
+      </div>
+      <a class="pill" href="#join"><span data-tr>Katıl</span><span data-en>Join</span></a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero" style="padding:0">
+    <!-- Video slot: replace this img with <video class="hero-media" autoplay muted loop playsinline poster="img/odtu-evrim.jpg"><source src="video/hero.mp4" type="video/mp4"></video> -->
+    <img class="hero-media" src="img/odtu-evrim.jpg" alt="" width="1400" height="933">
+    <canvas id="net" aria-hidden="true"></canvas>
+    <div class="wrap">
+      <div class="label dot" lang="en">Building for Future</div>
+      <h1 data-tr>Bilimin <em>geleceğini</em> birlikte inşa ediyoruz.</h1>
+      <h1 data-en>Building the <em>future</em> of science, together.</h1>
+      <p class="lede" data-tr>DeSci Türkiye; araştırmacıları, girişimcileri ve geliştiricileri açık, şeffaf ve iş birliğine dayalı bilim etrafında buluşturan bir topluluk.</p>
+      <p class="lede" data-en>DeSci Türkiye brings researchers, founders and builders together around open, transparent and collaborative science.</p>
+      <div class="cta">
+        <a class="pill" href="#join"><span data-tr>Topluluğa katıl</span><span data-en>Join the community</span> →</a>
+        <a class="pill ghost" href="#events"><span data-tr>Etkinlikleri keşfet</span><span data-en>Explore events</span></a>
+      </div>
+      <div class="caption">ODTÜ BLOCKCHAIN DAYS 2025 · <span data-tr>BİLİMİN EVRİMİ</span><span data-en>THE EVOLUTION OF SCIENCE</span></div>
+    </div>
+  </section>
+
+  <div class="ticker" aria-label="İstanbul, Ankara, Berlin, Singapur, Seul">
+    <div class="track" aria-hidden="true">
+      <span>İstanbul</span><span>Builders Week</span><span>Ankara</span><span>ODTÜ Blockchain Days</span><span>Berlin</span><span>BioExpo</span><span>Singapore</span><span>DeSci Summit</span><span>Seoul</span><span>Agentic Science</span>
+      <span>İstanbul</span><span>Builders Week</span><span>Ankara</span><span>ODTÜ Blockchain Days</span><span>Berlin</span><span>BioExpo</span><span>Singapore</span><span>DeSci Summit</span><span>Seoul</span><span>Agentic Science</span>
+    </div>
+  </div>
+
+  <section id="manifesto">
+    <div class="wrap">
+      <div class="head">
+        <div class="label dot"><span data-tr>Neden DeSci</span><span data-en>Why DeSci</span></div>
+        <h2 data-tr>Bilimin bir <em>güncellemeye</em> ihtiyacı var.</h2>
+        <h2 data-en>Science needs an <em>update</em>.</h2>
+        <p data-tr>Sorun teknoloji eksikliği değil; bilimsel iş birliği, veri paylaşımı ve teşvik sisteminin kapalı olması. Bu sadece akademide değil, endüstride de aynı.</p>
+        <p data-en>The problem is not a lack of technology. It is that collaboration, data sharing and incentives in science are closed, in industry as much as in academia.</p>
+      </div>
+      <div class="problems">
+        <div><span class="k">01</span><h3 data-tr>Kapalı veri</h3><h3 data-en>Closed data</h3>
+          <p data-tr>Araştırma verileri kurum duvarları arasında kalıyor; tekrarlanabilirlik zorlaşıyor.</p>
+          <p data-en>Research data stays inside institutions, which makes reproducibility hard.</p></div>
+        <div><span class="k">02</span><h3 data-tr>Atıl altyapı</h3><h3 data-en>Idle infrastructure</h3>
+          <p data-tr>Pahalı cihazlar boş dururken başka ekipler aynı ekipmana ulaşamıyor.</p>
+          <p data-en>Expensive instruments sit idle while other teams cannot get access to them.</p></div>
+        <div><span class="k">03</span><h3 data-tr>Görünmeyen katkılar</h3><h3 data-en>Invisible contributions</h3>
+          <p data-tr>Bilime katkı yapan herkes, özellikle genç araştırmacılar ve kadınlar, yeterince görünmüyor.</p>
+          <p data-en>Many people who contribute to science, especially early-career researchers and women, are not visible enough.</p></div>
+      </div>
+
+      <div class="eras">
+        <div class="era"><span class="v">1.0</span><h3 data-tr>Gözlem ve deney</h3><h3 data-en>Observation and experiment</h3>
+          <p data-tr>Bilgi, bireylerin merakı ve deneyleriyle büyüdü.</p><p data-en>Knowledge grew from individual curiosity and experiments.</p></div>
+        <div class="era"><span class="v">2.0</span><h3 data-tr>Kurumlar ve dergiler</h3><h3 data-en>Institutions and journals</h3>
+          <p data-tr>Üniversiteler, dergiler ve fon kuruluşları bilimi ölçeklendirdi, ama kapılarını da kapattı.</p><p data-en>Universities, journals and funders scaled science, and also closed its doors.</p></div>
+        <div class="era now"><span class="v">3.0</span><h3 data-tr>Açık ve merkeziyetsiz bilim</h3><h3 data-en>Open, decentralized science</h3>
+          <ul>
+            <li data-tr>Veriler açık erişimli</li><li data-en>Data is open access</li>
+            <li data-tr>Bilimsel katkılar blokzincir üzerinde izlenebilir</li><li data-en>Contributions are traceable on blockchain</li>
+            <li data-tr>Fonlama, DAO'lar ile topluluk tarafından doğrudan yapılabilir</li><li data-en>Communities can fund research directly through DAOs</li>
+          </ul></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap" style="padding-block:0">
+    <div class="numbers">
+      <div><b>80<i>+</i></b><span data-tr>Agentic Science'a gelen kişi</span><span data-en>people at Agentic Science</span></div>
+      <div><b>30</b><span data-tr>planlanan kontenjan</span><span data-en>seats we planned for</span></div>
+      <div><b>4</b><span data-tr>2025'te düzenlenen etkinlik</span><span data-en>events in 2025</span></div>
+      <div><b>3</b><span data-tr>ziyaret edilen global DeSci şehri</span><span data-en>global DeSci cities visited</span></div>
+    </div>
+  </div>
+
+  <section id="events">
+    <div class="wrap">
+      <div class="head">
+        <div class="label dot"><span data-tr>Etkinlikler</span><span data-en>Events</span></div>
+        <h2 data-tr>Salonu <em>dolduran</em> buluşmalar.</h2>
+        <h2 data-en>Gatherings that <em>fill</em> the room.</h2>
+      </div>
+      <div class="events">
+        <article class="ev big">
+          <div class="pic"><img src="img/bioexpo-stand.jpg" alt="BioExpo 2025'te DeSci Türkiye standı" loading="lazy"></div>
+          <div class="body">
+            <div class="top"><span class="chip live"><span data-tr>Yakında</span><span data-en>Coming soon</span></span><span class="meta">Online</span></div>
+            <h3 data-tr>Bilimde kadınlar için eğitim serisi</h3><h3 data-en>A training series for women in science</h3>
+            <p data-tr>Fikir aşamasından başlayan online workshop serimizin ilk oturumu hazırlanıyor.</p>
+            <p data-en>The first session of our online workshop series, starting from the idea stage, is in preparation.</p>
+            <div><a class="pill" href="#join"><span data-tr>Haberdar ol</span><span data-en>Get notified</span> →</a></div>
+          </div>
+        </article>
+        <article class="ev">
+          <div class="pic"><img class="contain" src="img/agentic-poster.jpg" alt="The Future of Agentic Science afişi" loading="lazy"></div>
+          <div class="body">
+            <div class="top"><span class="chip" lang="en">Builders Week</span><span class="meta">n = 80+</span></div>
+            <h3>The Future of Agentic Science</h3>
+            <p data-tr>BIO Protocol ile birlikte, yapay zekâ ajanlarının bilimi nasıl dönüştüreceğini konuştuk. 30 kişilik kontenjana 80'den fazla kişi geldi.</p>
+            <p data-en>With BIO Protocol, we discussed how AI agents could transform science. We planned for 30 seats and more than 80 people came.</p>
+            <div class="meta"><span>01.09.2025</span><span>Beşiktaş, İstanbul</span></div>
+          </div>
+        </article>
+        <article class="ev">
+          <div class="pic"><img src="img/bioexpo-talk.jpg" alt="BioExpo 2025 sahnesinde konuşma" loading="lazy" style="object-position:50% 30%"></div>
+          <div class="body">
+            <div class="top"><span class="chip"><span data-tr>Stant + konuşma</span><span data-en>Stand + talk</span></span></div>
+            <h3>BioExpo 2025</h3>
+            <p data-tr>Yaşam bilimleri platformu BioExpo'da açık bilimi ve veri paylaşımını sahneye taşıdık.</p>
+            <p data-en>At the life sciences platform BioExpo, we took open science and data sharing to the stage.</p>
+            <div class="meta"><span>15–17.10.2025</span><span>İstanbul</span></div>
+          </div>
+        </article>
+        <article class="ev">
+          <div class="pic"><img src="img/odtu-bilim30.jpg" alt="ODTÜ Blockchain Days 2025'te Bilim 3.0 sunumu" loading="lazy"></div>
+          <div class="body">
+            <div class="top"><span class="chip" lang="en">Keynote</span></div>
+            <h3>ODTÜ Blockchain Days · <span data-tr>Bilim 3.0</span><span data-en>Science 3.0</span></h3>
+            <p data-tr>Açık veri, blokzincirde izlenebilir katkılar ve DAO'larla topluluk fonlaması.</p>
+            <p data-en>Open data, contributions traceable on blockchain and community funding through DAOs.</p>
+            <div class="meta"><span>2025</span><span>Ankara</span></div>
+          </div>
+        </article>
+        <article class="ev">
+          <div class="pic"><img class="contain" src="img/science30.jpg" alt="Block Meets Science 3.0 afişi" loading="lazy"></div>
+          <div class="body">
+            <div class="top"><span class="chip" lang="en">Online</span></div>
+            <h3>Block Meets · Science 3.0</h3>
+            <p data-tr>IZTECH Blockchain ile merkeziyetsiz bilimin temellerini konuştuğumuz online buluşma.</p>
+            <p data-en>An online session with IZTECH Blockchain on the foundations of decentralized science.</p>
+            <div class="meta"><span>20.05.2025</span><span>IZTECH Blockchain</span></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap" style="padding-block:0">
+    <div class="partner-band">
+      <div class="label"><span data-tr>Birlikte çalıştıklarımız</span><span data-en>We've worked with</span></div>
+      <div class="partners"><span>BIO Protocol</span><span>Builders Week</span><span>BioExpo</span><span>ODTÜ Blockchain</span><span>IZTECH Blockchain</span></div>
+    </div>
+  </div>
+
+  <section id="global" style="padding-bottom:clamp(56px,8vw,96px)">
+    <div class="wrap">
+      <div class="head">
+        <div class="label dot"><span data-tr>Global ekosistem</span><span data-en>Global ecosystem</span></div>
+        <h2 data-tr>Türkiye'yi dünyadaki <em>DeSci</em> hareketine bağlıyoruz.</h2>
+        <h2 data-en>Connecting Türkiye to the global <em>DeSci</em> movement.</h2>
+        <p data-tr>Berlin'den Singapur'a, Seul'e; dünyadaki DeSci topluluklarıyla tanışıyor, öğrendiklerimizi buraya taşıyoruz.</p>
+        <p data-en>From Berlin to Singapore and Seoul, we meet DeSci communities around the world and bring what we learn home.</p>
+      </div>
+    </div>
+    <div class="strip">
+      <div class="track">
+        <figure><img src="img/berlin-group.jpg" alt="DeSci Berlin, Berlin" loading="lazy"><figcaption><b>DeSci Berlin</b><span>Berlin</span></figcaption></figure>
+        <figure><img src="img/singapore.jpg" alt="DeSci Summit, Singapore" loading="lazy"><figcaption><b>DeSci Summit</b><span>Singapore</span></figcaption></figure>
+        <figure><img src="img/seoul2.jpg" alt="DeSci Seoul, Seoul" loading="lazy"><figcaption><b>DeSci Seoul</b><span>Seoul</span></figcaption></figure>
+        <figure><img src="img/pump-science.jpg" alt="DeSci Berlin, Berlin" loading="lazy"><figcaption><b>DeSci Berlin</b><span>Berlin</span></figcaption></figure>
+        <figure><img src="img/singapore2.jpg" alt="DeSci Summit, Singapore" loading="lazy"><figcaption><b>DeSci Summit</b><span>Singapore</span></figcaption></figure>
+        <figure><img src="img/seoul.jpg" alt="AI × Data Summit, Seoul" loading="lazy"><figcaption><b>AI × Data Summit</b><span>Seoul</span></figcaption></figure>
+        <figure aria-hidden="true"><img src="img/berlin-group.jpg" alt="" loading="lazy"><figcaption><b>DeSci Berlin</b><span>Berlin</span></figcaption></figure>
+        <figure aria-hidden="true"><img src="img/singapore.jpg" alt="" loading="lazy"><figcaption><b>DeSci Summit</b><span>Singapore</span></figcaption></figure>
+        <figure aria-hidden="true"><img src="img/seoul2.jpg" alt="" loading="lazy"><figcaption><b>DeSci Seoul</b><span>Seoul</span></figcaption></figure>
+        <figure aria-hidden="true"><img src="img/pump-science.jpg" alt="" loading="lazy"><figcaption><b>DeSci Berlin</b><span>Berlin</span></figcaption></figure>
+        <figure aria-hidden="true"><img src="img/singapore2.jpg" alt="" loading="lazy"><figcaption><b>DeSci Summit</b><span>Singapore</span></figcaption></figure>
+        <figure aria-hidden="true"><img src="img/seoul.jpg" alt="" loading="lazy"><figcaption><b>AI × Data Summit</b><span>Seoul</span></figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section id="series">
+    <div class="wrap series">
+      <div class="head" style="margin:0">
+        <div class="label dot"><span data-tr>Eğitim serisi</span><span data-en>Training series</span></div>
+        <h2 data-tr>Fikirden <em>girişime</em>.</h2><h2 data-en>From idea to <em>venture</em>.</h2>
+        <p data-tr>Bilim ve teknolojideki kadınlar için online bir seri. Her oturumda kısa bir anlatım, konuk bir kadının hikâyesi ve uygulamalı bir çalışma var.</p>
+        <p data-en>An online series for women in science and technology. Each session brings a short talk, a guest's story and a hands-on exercise.</p>
+      </div>
+      <div style="display:grid;gap:24px">
+        <div class="themes">
+          <span data-tr>Fikir bulma</span><span data-en>Finding your idea</span>
+          <span data-tr>Liderlik ve görünürlük</span><span data-en>Leadership and visibility</span>
+          <span data-tr>Laboratuvardan girişime</span><span data-en>From lab to startup</span>
+          <span data-tr>Finansman</span><span data-en>Funding</span>
+          <span data-tr>Açık bilim</span><span data-en>Open science</span>
+        </div>
+        <div><a class="pill" href="#join"><span data-tr>İlk oturumdan haberdar ol</span><span data-en>Get notified about the first session</span> →</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="join" class="join">
+    <img class="bg" src="img/berlin-group.jpg" alt="" loading="lazy">
+    <div class="wrap join-grid">
+      <div>
+        <div class="label dot"><span data-tr>Katıl</span><span data-en>Join</span></div>
+        <h2 data-tr style="margin-top:18px">Bilimi <em>birlikte</em> yapalım.</h2>
+        <h2 data-en style="margin-top:18px">Let's do science <em>together</em>.</h2>
+        <p class="lede" data-tr>Katılımcı ya da gönüllü olarak yer alabilirsin. Gönüllülük dönemleri 3 ay, haftada yaklaşık 2–3 saat.</p>
+        <p class="lede" data-en>Join as a participant or a volunteer. Volunteer terms run 3 months, about 2–3 hours a week.</p>
+        <ul class="roles">
+          <li><span data-tr>İçerik ve müfredat</span><span data-en>Content and curriculum</span></li>
+          <li><span data-tr>Etkinlik ve moderasyon</span><span data-en>Events and moderation</span></li>
+          <li><span data-tr>Sosyal medya ve tasarım</span><span data-en>Social media and design</span></li>
+          <li><span data-tr>Konuşmacı ve partnerlikler</span><span data-en>Speakers and partnerships</span></li>
+          <li><span data-tr>Topluluk yönetimi</span><span data-en>Community management</span></li>
+        </ul>
+      </div>
+      <form id="join-form" novalidate>
+        <label for="f-name"><span data-tr>Ad soyad</span><span data-en>Full name</span><input id="f-name" name="name" required autocomplete="name"></label>
+        <label for="f-email"><span data-tr>E-posta</span><span data-en>Email</span><input id="f-email" name="email" type="email" required autocomplete="email"></label>
+        <label for="f-org"><span data-tr>Kurum / alan</span><span data-en>Organisation / field</span><input id="f-org" name="org"></label>
+        <div style="display:grid;gap:8px">
+          <span style="font-size:.88rem;font-weight:500"><span data-tr>Nasıl katılmak istersin?</span><span data-en>How would you like to join?</span></span>
+          <div class="radios">
+            <label for="f-type-p"><input id="f-type-p" type="radio" name="type" value="participant" checked><span data-tr>Katılımcı</span><span data-en>Participant</span></label>
+            <label for="f-type-v"><input id="f-type-v" type="radio" name="type" value="volunteer"><span data-tr>Gönüllü</span><span data-en>Volunteer</span></label>
+          </div>
+        </div>
+        <label for="f-msg"><span data-tr>Kendinden kısaca bahset</span><span data-en>Tell us briefly about yourself</span><textarea id="f-msg" name="msg"></textarea></label>
+        <button class="pill" type="submit"><span data-tr>Başvuruyu gönder</span><span data-en>Send application</span></button>
+        <p class="note" id="f-status" aria-live="polite"><span data-tr>Önizleme sürümü: form henüz bir yere gönderilmiyor.</span><span data-en>Preview version: the form is not connected yet.</span></p>
+      </form>
+    </div>
+  </section>
+
+  <section id="blog">
+    <div class="wrap">
+      <div class="head">
+        <div class="label dot"><span data-tr>Blog ve kaynaklar</span><span data-en>Blog and resources</span></div>
+        <h2 data-tr>Okumalar ve <em>notlar</em>.</h2><h2 data-en>Reading and <em>notes</em>.</h2>
+      </div>
+      <div class="posts">
+        <article class="post"><span class="label"><span data-tr>Yakında</span><span data-en>Coming soon</span></span>
+          <h3 data-tr>Bilim 3.0 nedir?</h3><h3 data-en>What is Science 3.0?</h3>
+          <p data-tr>Merkeziyetsiz bilime yeni başlayanlar için kısa bir giriş.</p><p data-en>A short introduction to decentralized science for newcomers.</p></article>
+        <article class="post"><span class="label"><span data-tr>Yakında</span><span data-en>Coming soon</span></span>
+          <h3 data-tr>Agentic Science: etkinlikten notlar</h3><h3 data-en>Agentic Science: notes from the event</h3>
+          <p data-tr>Builders Week 2025 oturumundan öne çıkanlar.</p><p data-en>Highlights from the Builders Week 2025 session.</p></article>
+        <article class="post"><span class="label"><span data-tr>Yakında</span><span data-en>Coming soon</span></span>
+          <h3 data-tr>Berlin, Singapur, Seul: global DeSci'den izlenimler</h3><h3 data-en>Berlin, Singapore, Seoul: notes from global DeSci</h3>
+          <p data-tr>Dünyadaki DeSci topluluklarından öğrendiklerimiz.</p><p data-en>What we learned from DeSci communities around the world.</p></article>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <div class="big"><svg class="mark" viewBox="40 40 290 300" aria-hidden="true"><path fill-rule="evenodd" fill="currentColor" d="M 184.125 44.925781 C 177.339844 46.136719 170.394531 49.679688 165.207031 54.578125 C 158.707031 60.710938 156.027344 65.570312 153.53125 75.730469 C 151.574219 83.695312 150.667969 86.382812 148.800781 89.71875 C 146.425781 93.96875 143.996094 96.328125 140.011719 98.257812 C 136.871094 99.777344 136.101562 99.976562 132.730469 100.144531 C 127.964844 100.378906 122.851562 99.371094 116.566406 96.953125 C 103.40625 91.890625 99.011719 90.929688 90.75 91.316406 C 74.628906 92.070312 61.277344 100.578125 54.363281 114.5 C 53.234375 116.773438 51.816406 120.492188 51.210938 122.761719 C 50.234375 126.421875 50.109375 127.671875 50.089844 133.710938 C 50.066406 142.042969 50.851562 145.636719 54.199219 152.558594 C 56.902344 158.136719 59.746094 161.796875 66.046875 167.789062 C 71.457031 172.9375 73.492188 175.578125 74.703125 179.023438 C 76.425781 183.929688 75.152344 189.96875 71.546875 193.957031 C 70.703125 194.890625 67.601562 197.367188 64.652344 199.457031 C 56.933594 204.929688 53.464844 209.003906 50.660156 215.890625 C 48.921875 220.160156 48.152344 224.488281 48.164062 229.949219 C 48.171875 236.984375 49.210938 241.621094 51.953125 246.894531 C 56.183594 255.035156 62.867188 260.496094 71.96875 263.253906 C 75.222656 264.238281 76.398438 264.378906 81.660156 264.414062 C 88.445312 264.457031 90.105469 264.144531 99.144531 261.136719 C 102.546875 260.003906 105.972656 259.144531 107.613281 259.007812 C 115.945312 258.328125 121.921875 262.152344 126.25 270.929688 C 128.78125 276.066406 129.753906 279.738281 130.835938 288.265625 C 131.289062 291.824219 132.011719 296.097656 132.441406 297.769531 C 136.808594 314.65625 150.765625 328.035156 168.410156 332.242188 C 175.144531 333.851562 185.484375 333.304688 192.269531 330.988281 C 204.964844 326.652344 216.015625 317.125 221.496094 305.796875 C 223.625 301.386719 224.03125 300.199219 226.015625 292.589844 C 226.835938 289.433594 227.996094 285.824219 228.59375 284.558594 C 230.074219 281.433594 232.582031 279 235.042969 278.3125 C 238.820312 277.253906 241.179688 277.832031 251.796875 282.417969 C 269.164062 289.917969 288.996094 285.511719 300.59375 271.574219 C 303.589844 267.972656 307.265625 260.8125 308.492188 256.191406 C 309.175781 253.613281 309.371094 251.65625 309.375 247.308594 C 309.386719 240.632812 308.585938 237.070312 305.796875 231.40625 C 303.351562 226.441406 300.589844 222.890625 295.964844 218.773438 C 289.300781 212.839844 286.539062 209.40625 284.464844 204.46875 C 283.304688 201.703125 283.085938 200.632812 282.921875 196.863281 C 282.667969 190.964844 283.488281 188.4375 287.410156 183.058594 C 289.347656 180.402344 290.738281 179.195312 296.960938 174.78125 C 313.308594 163.183594 319.417969 154.824219 321.464844 141.25 C 325.117188 117.011719 310.683594 95.769531 287.839844 91.769531 C 277.644531 89.984375 269.296875 91.636719 256.394531 98.003906 C 245.816406 103.21875 242.75 104.414062 239.242188 104.679688 C 236.652344 104.875 235.96875 104.769531 234.003906 103.871094 C 231.683594 102.808594 230.46875 101.492188 229.238281 98.726562 C 228.65625 97.410156 228.53125 95.554688 228.476562 87.445312 C 228.382812 73.9375 227.195312 68.886719 222.460938 61.808594 C 217.214844 53.964844 208.894531 48.019531 199.886719 45.675781 C 196.183594 44.714844 187.59375 44.304688 184.125 44.925781 M 155.71875 114.519531 C 150.664062 115.878906 145.550781 119.410156 142.160156 123.882812 C 139.171875 127.828125 137.234375 132.355469 135.589844 139.226562 C 133.820312 146.625 132.234375 150.535156 129.132812 155.167969 C 124.296875 162.386719 119.039062 167.40625 110.578125 172.871094 C 103.269531 177.59375 102.863281 177.886719 100.652344 180.0625 C 97.992188 182.683594 96.886719 184.890625 96.628906 188.109375 C 96.308594 192.074219 97.542969 194.203125 103.203125 199.464844 C 112.769531 208.363281 115.949219 214.402344 118.566406 228.660156 C 119.765625 235.175781 123.164062 240.484375 128.363281 243.953125 C 136.183594 249.175781 145.722656 249.585938 156.429688 245.160156 C 168.273438 240.265625 174.074219 239.074219 182.066406 239.894531 C 191.765625 240.890625 200.796875 245.25 209.71875 253.246094 C 215.777344 258.675781 219.988281 260.011719 224.339844 257.878906 C 229.285156 255.464844 231.15625 252.050781 233.699219 240.824219 C 235.230469 234.078125 239.125 227.441406 243.878906 223.488281 C 245.203125 222.382812 248.117188 220.207031 250.347656 218.652344 C 252.578125 217.09375 255.398438 214.828125 256.609375 213.617188 C 265.414062 204.8125 267.949219 192.898438 263.21875 182.5625 C 261.304688 178.378906 259.085938 175.578125 252.496094 169.027344 C 245.164062 161.738281 242.742188 158.816406 240.308594 154.292969 C 237.089844 148.3125 236.0625 144.03125 234.921875 131.863281 C 234.429688 126.636719 233.03125 123.027344 230.453125 120.351562 C 227.859375 117.660156 226.171875 117.003906 221.902344 117.023438 C 218.726562 117.039062 217.675781 117.238281 214.675781 118.390625 C 203.488281 122.683594 201.980469 123.089844 196.484375 123.292969 C 189.457031 123.554688 186.304688 122.75 178.269531 118.648438 C 170.71875 114.796875 167.554688 113.871094 162.015625 113.910156 C 159.738281 113.925781 156.90625 114.199219 155.71875 114.519531 "/></svg>DeSci TR</div>
+    <div class="row">
+      <em>Building for Future</em>
+      <span>desci.tr</span>
+      <span data-tr>İletişim bilgileri eklenecek</span><span data-en>Contact details coming soon</span>
+      <span>© 2026 DeSci Türkiye</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var root=document.documentElement;
+  function setLang(l){
+    root.setAttribute('data-lang',l); root.lang=l;
+    document.querySelectorAll('.lang button').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.set===l))});
+    try{localStorage.setItem('desci-lang',l)}catch(e){}
+  }
+  var saved='tr'; try{saved=localStorage.getItem('desci-lang')||'tr'}catch(e){}
+  setLang(saved==='en'?'en':'tr');
+  document.querySelectorAll('.lang button').forEach(function(b){b.addEventListener('click',function(){setLang(b.dataset.set)})});
+
+  document.getElementById('join-form').addEventListener('submit',function(e){
+    e.preventDefault();
+    var f=e.target, s=document.getElementById('f-status');
+    if(!f.elements.name.value.trim()||f.elements.email.value.indexOf('@')<1){
+      s.className='note'; s.innerHTML='<span data-tr>Lütfen ad ve geçerli bir e-posta gir.</span><span data-en>Please enter your name and a valid email.</span>'; return;}
+    /* Google Forms bağlantısı: FORM_URL ve alan kimlikleri (entry.xxx) form hazır olunca doldurulacak */
+    var FORM_URL='', FIELDS={name:'',email:'',org:'',type:'',msg:''};
+    if(!FORM_URL){ s.className='ok'; s.innerHTML='<span data-tr>Teşekkürler! Başvurular çok yakında açılıyor.</span><span data-en>Thank you! Applications are opening very soon.</span>'; return; }
+    var fd=new FormData();
+    Object.keys(FIELDS).forEach(function(k){ var el=f.elements[k]; if(FIELDS[k]&&el) fd.append(FIELDS[k], el.value); });
+    fetch(FORM_URL,{method:'POST',mode:'no-cors',body:fd})
+      .then(function(){ f.reset(); s.className='ok'; s.innerHTML='<span data-tr>Teşekkürler! Başvurun bize ulaştı, en kısa sürede dönüş yapacağız.</span><span data-en>Thank you! We received your application and will get back to you soon.</span>'; })
+      .catch(function(){ s.className='note'; s.innerHTML='<span data-tr>Başvuru gönderilemedi. Lütfen birkaç dakika sonra tekrar dene.</span><span data-en>Your application could not be sent. Please try again in a few minutes.</span>'; });
+  });
+
+  /* live molecular network in the hero, echoing the logo's nodes */
+  var c=document.getElementById('net'); if(!c||!c.getContext) return;
+  var ctx=c.getContext('2d'), dpr=Math.min(window.devicePixelRatio||1,2), W=0,H=0, pts=[];
+  var still=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function size(){
+    var r=c.getBoundingClientRect(); W=r.width; H=r.height;
+    c.width=W*dpr; c.height=H*dpr; ctx.setTransform(dpr,0,0,dpr,0,0);
+    var n=Math.round(Math.min(70,Math.max(26,W*H/16000)));
+    pts=[]; for(var i=0;i<n;i++){pts.push({x:W*(.35+.65*Math.random()),y:H*Math.random(),vx:(Math.random()-.5)*.28,vy:(Math.random()-.5)*.28,r:1.2+Math.random()*2.6})}
+  }
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    var d=Math.min(160,W/6);
+    for(var i=0;i<pts.length;i++){var p=pts[i];
+      if(!still){p.x+=p.vx;p.y+=p.vy; if(p.x<W*.25||p.x>W)p.vx*=-1; if(p.y<0||p.y>H)p.vy*=-1;}
+      for(var j=i+1;j<pts.length;j++){var q=pts[j],dx=p.x-q.x,dy=p.y-q.y,dist=Math.sqrt(dx*dx+dy*dy);
+        if(dist<d){ctx.strokeStyle='rgba(255,128,2,'+(0.38*(1-dist/d)).toFixed(3)+')';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(q.x,q.y);ctx.stroke();}}
+    }
+    for(var k=0;k<pts.length;k++){var o=pts[k];ctx.fillStyle='rgba(255,128,2,.85)';ctx.beginPath();ctx.arc(o.x,o.y,o.r,0,Math.PI*2);ctx.fill();}
+    if(!still) requestAnimationFrame(draw);
+  }
+  size(); draw();
+  var t; window.addEventListener('resize',function(){clearTimeout(t);t=setTimeout(function(){size(); if(still) draw();},150)});
+})();
+</script>
+
+</body>
+</html>
