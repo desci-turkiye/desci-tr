@@ -1,0 +1,6 @@
+{
+  "redirects": [
+    { "source": "/(CLAUDE|README)\\.md", "destination": "/", "permanent": false },
+    { "source": "/vercel.json", "destination": "/", "permanent": false }
+  ]
+}
